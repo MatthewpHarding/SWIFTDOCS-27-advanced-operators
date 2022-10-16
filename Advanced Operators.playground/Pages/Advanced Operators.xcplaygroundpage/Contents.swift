@@ -1,6 +1,6 @@
 //: ![Swift](swift-logo.png)
 //: Swift v5.7 [official docs](https://docs.swift.org/swift-book/LanguageGuide/AdvancedOperators.html)
-//: # Advanced Operators
+//: # 28. Advanced Operators
 //:
 //:
 //: In addition to the operators described in Basic Operators, Swift provides several advanced operators that perform more complex value manipulation. These include all of the bitwise and bit shifting operators you will be familiar with from C and Objective-C.

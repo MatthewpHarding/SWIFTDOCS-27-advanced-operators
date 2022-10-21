@@ -137,7 +137,8 @@ let blueComponent = pink & 0x0000FF           // blueComponent is 0x99, or 153
 //: For example, the Int16 integer type can hold any signed integer between -32768 and 32767. Trying to set an Int16 constant or variable to a number outside of this range causes an error:
 var potentialOverflow = Int16.max
 // potentialOverflow equals 32767, which is the maximum value an Int16 can hold
-potentialOverflow += 1
+// ⛔️ Run time error: uncomment to view
+//potentialOverflow += 1
 // this causes an error
 //: Providing error handling when values get too large or too small gives you much more flexibility when coding for boundary value conditions.
 //:
@@ -162,7 +163,7 @@ unsignedOverflow = unsignedOverflow &+ 1
 //:
 //: ![Diagram](overflowAddition_2x.png)
 //: Something similar happens when an unsigned integer is allowed to overflow in the negative direction. Here’s an example using the overflow subtraction operator (&-):
-var unsignedOverflow = UInt8.min
+unsignedOverflow = UInt8.min
 // unsignedOverflow equals 0, which is the minimum value a UInt8 can hold
 unsignedOverflow = unsignedOverflow &- 1
 // unsignedOverflow is now equal to 255
@@ -200,10 +201,10 @@ signedOverflow = signedOverflow &- 1
 //:
 //: However, remainder and multiplication have the same precedence as each other. To work out the exact evaluation order to use, you also need to consider their associativity. Remainder and multiplication both associate with the expression to their left. Think of this as adding implicit parentheses around these parts of the expression, starting from their left:
 2 + ((3 % 4) * 5)
-(3 % 4) is 3, so this is equivalent to:
+//: (3 % 4) is 3, so this is equivalent to:
 
 2 + (3 * 5)
-(3 * 5) is 15, so this is equivalent to:
+//: (3 * 5) is 15, so this is equivalent to:
 
 2 + 15
 //: This calculation yields the final answer of 17.
@@ -304,7 +305,7 @@ if twoThree == anotherTwoThree {
 //:
 //: New operators are declared at a global level using the operator keyword, and are marked with the prefix, infix or postfix modifiers:
 //:
-//: prefix operator +++
+prefix operator +++
 //:
 //: The example above defines a new prefix operator called +++. This operator doesn’t have an existing meaning in Swift, and so it’s given its own custom meaning below in the specific context of working with Vector2D instances. For the purposes of this example, +++ is treated as a new “prefix doubling” operator. It doubles the x and y values of a Vector2D instance, by adding the vector to itself with the addition assignment operator defined earlier. To implement the +++ operator, you add a type method called +++ to Vector2D as follows:
 extension Vector2D {
@@ -326,7 +327,7 @@ let afterDoubling = +++toBeDoubled
 //:
 //: The following example defines a new custom infix operator called +-, which belongs to the precedence group AdditionPrecedence:
 //:
-//: infix operator +-: AdditionPrecedence
+infix operator +-: AdditionPrecedence
 extension Vector2D {
     static func +- (left: Vector2D, right: Vector2D) -> Vector2D {
         return Vector2D(x: left.x + right.x, y: left.y - right.y)
